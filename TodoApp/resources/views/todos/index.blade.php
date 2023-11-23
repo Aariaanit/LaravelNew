@@ -22,13 +22,18 @@
         @if(count($todos))
             <table class="table table-bordered">
                 <tr>
-                    <td>ID</td>
+                    <td>Nr.</td>
                     <td>Title</td>
                     <td>Status</td>
+                    <th>Edit</th>
                 </tr>
+                @php
+                    $i = 1;
+                @endphp
                 @foreach ($todos as $todo)
                 <tr>
-                    <td>{{ $todo ->id }}</td>
+                    {{-- <td>{{ $todo ->id }}</td> --}}
+                    <td>{{ $i++ }}</td>
                     <td>{{ $todo->title }}</td>
                     {{-- <td>{{ $todo->completed }}</td> --}}
                     <td>
@@ -37,6 +42,19 @@
                         @else   
                             <span class="badge badge-sm bg-info">Open</span>
                         @endif
+                    </td>
+                    <td>
+                        <a href="{{ route('todos.show', ['todo' => $todo->id]) }}" class="btn btn-sm btn-primary">Preview</a>
+                        
+                        {{-- EDIT --}}
+                        <a href="{{ route('todos.edit', ['todo' => $todo->id]) }}" class="btn btn-sm btn-primary">Edit</a>
+                        
+                        {{-- DELETE --}}
+                        <form action="{{ route('todos.destroy', ['todo' => $todo->id]) }}" method="POST" onsubmit="return confirm('A jeni i sigurt!')" class="d-inline">
+                            @method('DELETE')
+                            @csrf
+                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                        </form>
                     </td>
                 </tr> 
                 @endforeach

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TodoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TodosController;
 
@@ -18,4 +19,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('todos',[TodosController::class, 'index'])->name('todos');
+//Route::get('todos',[TodoController::class, 'index'])->name('todos');
+
+Route::get('create',[TodosController::class, 'create'])->name('create');
+
+Route::resource('todos', TodosController::class);
