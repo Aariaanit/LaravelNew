@@ -56,7 +56,8 @@ class TodosController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $todo = Todo::find($id);
+        return view('todos.show')->with('todo',$todo);
     }
 
     /**
@@ -64,7 +65,8 @@ class TodosController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $todo = Todo::find($id);
+        return view('todos.edit')->with('todo',$todo);
     }
 
     /**
@@ -72,7 +74,20 @@ class TodosController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+         $request->validate([
+            'title' => 'required'
+        ]);
+
+        $todo = Todo::find($id);
+
+        $data['title'] = $request['title'];
+        $data['completed'] = ($request['completed'] == 1) ? 1 : 0;
+
+        if($todo->update($data))
+            return redirect()->route('todos.index')->with('status', 'Todo eshte ndryshuar me sukses');
+        else
+            return redirect()->back()->with('status', 'Diqka eshte gabim ne ndryshimin e Todo!');
+    
     }
 
     /**
@@ -80,6 +95,12 @@ class TodosController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $todo = Todo::find($id);
+
+        if($todo->delete())
+            return redirect()->route('todos.index')->with('status', 'Todo eshte fshire me sukses');
+        else
+            return redirect()->back()->with('status', 'Diqka eshte gabim ne fshirjen e Todo!');
     }
+    
 }
