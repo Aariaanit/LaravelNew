@@ -17,7 +17,22 @@ use App\Http\Controllers\Admin\AdminController;
 
 Route::get('/', function () {
     return view('blog.index');
-});
+})->name('home');
+Route::get('/about', function () {
+    return view('blog.about');
+})->name('about');
+Route::get('/blog', function () {
+    return view('blog.blog');
+})->name('blog');
+Route::get('/features', function () {
+    return view('blog.features');
+})->name('features');
+Route::get('/contact', function () {
+    return view('blog.contact');
+})->name('contact');
+
+
+
 
 Auth::routes();
 
