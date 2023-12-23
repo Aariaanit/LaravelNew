@@ -178,13 +178,15 @@
               </div>
               <div class="preview-item-content">
                 <a class="dropdown-item" href="{{ route('logout') }}"
-                onclick="event.preventDefault();
-                              document.getElementById('logout-form').submit();">
-                  <p class="preview-subject mb-1">Log out</p>
-                </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                  @csrf
-                </form>
+                                 onclick="event.preventDefault();
+                                               document.getElementById('logout-form').submit();">
+                                Log out
+                              </a>
+
+                              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                  @csrf
+                              </form>
+                  
               </div>
               {{-- <div class="preview-item-content">
                 <p class="preview-subject mb-1">Log out</p>

@@ -1,4 +1,4 @@
-    <link rel="stylesheet" href="{{asset('assetsAdmin/vendors/mdi/css/materialdesignicons.min.css')}}">
+<link rel="stylesheet" href="{{asset('assetsAdmin/vendors/mdi/css/materialdesignicons.min.css')}}">
     <link rel="stylesheet" href="{{asset('assetsAdmin/vendors/css/vendor.bundle.base.css')}}">
     <!-- endinject -->
     <!-- Plugin css for this page -->
