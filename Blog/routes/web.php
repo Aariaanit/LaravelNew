@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,8 +42,15 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::prefix('admin')->middleware('auth','isAdmin')->group(function (){
 
     Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
+    //category route
+    Route::get('/category', [CategoryController::class, 'index'])->name('category');
+    //Add category
+    Route::get('/add-category', [CategoryController::class,'create'])->name('add-category');
+    Route::post('/add-category',[CategoryController::class,'store'])->name('create');
+    //Edit category
+    Route::get('/edit-category/{category_id}', [CategoryController::class,'edit'])->name('edit-category');
+    Route::put('/update-category/{category_id}', [CategoryController::class,'update'])->name('update-category');
+
 });
-
-
 
 //Route::get('/admin', [AdminController::class, 'index'])->name('admin');
