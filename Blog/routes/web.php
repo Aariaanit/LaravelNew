@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\SendMailController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,9 +30,6 @@ Route::get('/blog', function () {
 Route::get('/features', function () {
     return view('blog.features');
 })->name('features');
-Route::get('/contact', function () {
-    return view('blog.contact');
-})->name('contact');
 
 
 
@@ -50,7 +49,9 @@ Route::prefix('admin')->middleware('auth','isAdmin')->group(function (){
     //Edit category
     Route::get('/edit-category/{category_id}', [CategoryController::class,'edit'])->name('edit-category');
     Route::put('/update-category/{category_id}', [CategoryController::class,'update'])->name('update-category');
-
+    Route::get('/delete-category/{category_id}', [CategoryController::class,'destroy'])->name('delete-category');
 });
 
-//Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+    //Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+    Route::get('/contact',[SendMailController::class,'index'])->name('contact');
+    Route::post('/sendMail',[SendMailController::class,'sendMail'])->name('sendMail');

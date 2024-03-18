@@ -107,8 +107,21 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
+    public function destroy($category_id){
+        
+        $category = Category::find($category_id);
+        
+        if($category){
+
+            $destination = 'assetsAdmin/images/'.$category->image;
+            if(File::exists($destination)){
+                File::delete($destination);
+            }
+            $category->delete();
+            return redirect('admin/category')->with('message','Category Deleted Sucessfully');
+        }
+        else{
+            return redirect('admin/category')->with('message','No Category Id Found');
+        }
     }
 }

@@ -28,7 +28,7 @@
                         <td>{{ $item->id }}</td>
                         <td>{{ $item->name }}</td>
                         <td>
-                            <img src="{{ asset('uploads/category/'.$item->image) }}" alt="img" style="width:100px;height:50px">
+                            <img src="{{ asset('assetsAdmin/images/'.$item->image) }}" alt="img" style="width:100px;height:50px">
                         </td>
                         <td>{{ $item->status == '1' ? 'Hidden':'Show' }}</td>
                         <td>
@@ -36,6 +36,13 @@
                         </td>
                         <td>
                             <a href="{{ url('admin/delete-category/'.$item->id) }}" class="btn btn-danger">Delete</a>
+                            {{-- <form action="{{ url('admin/delete-category/'.$item->id) }}" method="POST" onsubmit="return confirm('A jeni i sigurt!')" class="d-inline">
+                                @method('DELETE')
+                                @csrf
+                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                            </form> --}}
+                            
+
                         </td>
                     </tr>
                 @endforeach
